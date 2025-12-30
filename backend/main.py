@@ -6,7 +6,8 @@ import zlib, json
 def createTables():
     with app.app_context():
         db.create_all()
-        
+    return jsonify({"message": "Tables created"}), 200
+
 @app.route("/upload_file/<int:file_number>", methods=["POST"])
 
 #Reads file from given form data and stores it under given file number
@@ -593,7 +594,7 @@ def toggleFile(status, file_number):
 
     return jsonify({"message": "File toggled successfully"}), 200
 
-# if __name__ == "__main__":
-#     with app.app_context():
-#         db.create_all()
-#     app.run()
+if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True)
